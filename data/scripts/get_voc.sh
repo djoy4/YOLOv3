@@ -33,7 +33,7 @@ import os
 import xml.etree.ElementTree as ET
 from os import getcwd
 
-sets = [('2012', 'train'), ('2012', 'val'), ('2007', 'train'), ('2007', 'val'), ('2007', 'test')]
+sets = [('2012' , 'train'), ('2007', 'train'), ('2007', 'val'), ('2007', 'test')]
 
 classes = ["aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable", "dog",
            "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"]
@@ -80,11 +80,15 @@ for year, image_set in sets:
     list_file.close()
 END
 
-cat 2007_train.txt 2007_val.txt 2012_train.txt 2012_val.txt >train.txt
-cat 2007_train.txt 2007_val.txt 2007_test.txt 2012_train.txt 2012_val.txt >train.all.txt
+cat 2012_train.txt 2007_train.txt   >train.txt
+cat 2012_train.txt 2007_train.txt 2007_val.txt 2007_test.txt  >train.all.txt
 
-mkdir ../VOC ../VOC/images ../VOC/images/train ../VOC/images/val
-mkdir ../VOC/labels ../VOC/labels/train ../VOC/labels/val
+cat 2007_val.txt   >val.txt
+#2007_val.txt   2012_val.txt
+
+mkdir ../VOC ../VOC/images ../VOC/images/train ../VOC/images/val ../VOC/images/test
+mkdir ../VOC/labels ../VOC/labels/train ../VOC/labels/val ../VOC/labels/test
+
 
 python3 - "$@" <<END
 import os
@@ -100,8 +104,8 @@ with open('../tmp/train.txt', 'r') as f:
         if os.path.exists("../" + line):
             os.system("cp ../" + line + " ../VOC/labels/train")
 
-print(os.path.exists('../tmp/2007_test.txt'))
-with open('../tmp/2007_test.txt', 'r') as f:
+print(os.path.exists('../tmp/val.txt'))
+with open('../tmp/val.txt', 'r') as f:
     for line in f.readlines():
         line = "/".join(line.split('/')[-5:]).strip()
         if os.path.exists("../" + line):
@@ -110,6 +114,17 @@ with open('../tmp/2007_test.txt', 'r') as f:
         line = line.replace('JPEGImages', 'labels').replace('jpg', 'txt')
         if os.path.exists("../" + line):
             os.system("cp ../" + line + " ../VOC/labels/val")
+
+print(os.path.exists('../tmp/2007_test.txt'))
+with open('../tmp/2007_test.txt', 'r') as f:
+    for line in f.readlines():
+        line = "/".join(line.split('/')[-5:]).strip()
+        if os.path.exists("../" + line):
+            os.system("cp ../" + line + " ../VOC/images/test")
+
+        line = line.replace('JPEGImages', 'labels').replace('jpg', 'txt')
+        if os.path.exists("../" + line):
+            os.system("cp ../" + line + " ../VOC/labels/test")
 END
 
 rm -rf ../tmp # remove temporary directory
