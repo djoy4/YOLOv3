@@ -60,7 +60,7 @@ of tools for accessing the data sets and annotations. It consists of 20 classes 
 figure 4, 3 examples of training images are shown which respectively represents object such as people
 and cups, a cat and finally a duck.
 
-![](https://ibb.co/9YVY7gm/Dataset.png)
+![](https://www.researchgate.net/profile/Cees-Snoek/publication/251705574/figure/fig2/AS:667713294848008@1536206663695/Object-categories-of-the-PASCAL-VOC-Challenge-2007.png)
 
 ## Training and Testing
 
