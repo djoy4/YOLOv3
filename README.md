@@ -47,6 +47,21 @@ Since there are three different scales at which detections are made, 9 anchor bo
 
 This is mainly divided into bounding box prediction and classification loss.  The main difference in theloss function between YOLO and YOLOv3 is that the last three terms are changed to cross-entropyloss  instead  of  being  squared  loss.   In  other  words,  object  confidence  and  class  predictions  are  nowpredicted through logistic regression.
 
+## Data Set : PASCAL VOC 2007-2012
+
+The data set that we used for our experiments, was the PASCAL VOC 2007 & 2012 which is a
+benchmark dataset along with MS COCO, when it comes in comparing and performance evaluation
+in object detection tasks. We choose to go with PASCAL VOC over MS COCO since it is modest in
+scale and due to resources limitations would be easier to run the experiments.
+
+The dataset provides standardised image data sets for object class recognition and also a common set
+of tools for accessing the data sets and annotations. It consists of 20 classes and we used approximately
+8 thousand images for training, 2 thousand images for validation and 5 thousand images for testing. In
+figure 4, 3 examples of training images are shown which respectively represents object such as people
+and cups, a cat and finally a duck.
+
+![](https://ibb.co/9YVY7gm)
+
 ## Training and Testing
 
 Step-1) Download and run the [Yolov3.ipynb](https://github.com/djoy4/YOLOv3/blob/main/Yolov3.ipynb) file. 
