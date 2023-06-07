@@ -1,4 +1,4 @@
-# You Only Look Once : An Incremental Upadte -  (YOLOv3)
+# You Only Look Once : An Incremental Update -  (YOLOv3)
 
 Authors: Mariaos Marianos , Denzil A Joy
 
